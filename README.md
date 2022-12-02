@@ -5,7 +5,7 @@
 
 * ⚡ Fast
 * 🔧 Maintained
-* 🔰 Secured
+* 🔰 Secure
 * 💲 Free
 
 ## When to use this?
