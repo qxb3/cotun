@@ -3,4 +3,4 @@
 
 ## Packages
 
-* [api](https://github.com/qxb3/countie) - The api
+* [api](https://github.com/qxb3/countie/tree/main/packages/api) - The api
