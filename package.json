@@ -1,0 +1,10 @@
+{
+  "name": "countie",
+  "description": "A counter as a service.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/**"
+  ]
+}
