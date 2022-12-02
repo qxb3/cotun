@@ -1,6 +1,7 @@
 require('dotenv/config')
 
 const { build } = require('./app')
+const { connectToDb } = require('./lib/utils/db')
 
 async function start() {
   const port = process.env.PORT || 5000
@@ -17,9 +18,10 @@ async function start() {
   })
 
   try {
+    await connectToDb(app)
     await app.listen({ port })
   } catch(err) {
-    app.logger.error(err)
+    app.log.error(err)
   }
 }
 

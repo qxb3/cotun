@@ -1,6 +1,6 @@
 const fastify = require('fastify')
 
-function build(opts = {}) {
+const build = (opts = {}) => {
   const app = fastify(opts)
 
   app.register(require('@fastify/cors'))
