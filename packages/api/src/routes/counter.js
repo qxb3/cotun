@@ -1,3 +1,5 @@
+const Counties = require('../lib/models/counties')
+
 module.exports = (app, _options, done) => {
   app.route({
     method: 'POST',
@@ -12,16 +14,33 @@ module.exports = (app, _options, done) => {
       },
       query: {
         type: 'object',
-        required: ['type'],
+        required: ['name', 'type'],
         properties: {
-          type: { type: 'string' }
+          name: { type: 'string' },
+          type: {
+            type: 'string',
+            enum: ['increment', 'decrement']
+          }
         }
       }
     },
-    handler: (req, reply) => {
-      const { headers, query } = req
+    handler: async (req, reply) => {
+      const { name, type } = req.query
 
-      reply.send({ headers, query })
+      const update = type === 'increment'
+        ? { $inc: { count: 1 } }
+        : { $inc: { count: -1 } }
+
+      const countie = await Counties.findOneAndUpdate(
+        { name },
+        update,
+        { new: true }
+      )
+
+      if (!countie)
+        return reply.badRequest('there is no countie with that name')
+
+      reply.send(countie)
     }
   })
 
