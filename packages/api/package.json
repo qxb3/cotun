@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "description": "The api powered by fastify",
+  "description": "countie api powered by fastify",
   "version": "0.0.1",
   "license": "MIT",
   "main": "src/index.js",

@@ -15,4 +15,4 @@ This is useful when you want to setup a persistent counter to store something li
 
 ## Packages
 
-* [api](https://github.com/qxb3/countie/tree/main/packages/api) - The api powered by fastify
+* [api](https://github.com/qxb3/countie/tree/main/packages/api) - countie api powered by fastify
