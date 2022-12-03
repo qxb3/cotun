@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "description": "countie website created using svelte",
+  "description": "cotun website created using svelte",
   "private": true,
   "version": "0.0.1",
   "type": "module",

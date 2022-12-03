@@ -1,4 +1,4 @@
-<h1 align="center">countie</h1>
+<h1 align="center">cotun</h1>
 <p align="center">A counter as a service</p>
 
 ## Features
