@@ -1,3 +1,7 @@
+<a align="center">
+  <img src="https://github.com/qxb3/cotun/blob/main/logo.png?raw=true">
+</a>
+
 <h1 align="center">cotun</h1>
 <p align="center">A counter as a service</p>
 
