@@ -2,7 +2,7 @@
 </script>
 
 <main>
-  <h1>Hello!</h1>
+  <h1 class="font-bold">Hello!</h1>
 </main>
 
 <style>
