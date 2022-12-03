@@ -15,5 +15,5 @@ This is useful when you want to setup a persistent counter to store something li
 
 ## Packages
 
-* [api](https://github.com/qxb3/countie/tree/main/packages/api) - countie api powered by fastify
-* [website](https://github.com/qxb3/countie/tree/main/packages/website) - countie website created using svelte
+* [api](https://github.com/qxb3/cotun/tree/main/packages/api) - cotun api powered by fastify
+* [website](https://github.com/qxb3/cotun/tree/main/packages/website) - cotun website created using svelte
