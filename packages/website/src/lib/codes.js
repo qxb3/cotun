@@ -18,7 +18,7 @@ export const usages = {
       }
     })
   `),
-  '@cotun/js': multiLine(6, `
+  '@cotun/js': multiLine(4, `
     import cotun from '@cotun/js'
 
     const counter = cotun({
