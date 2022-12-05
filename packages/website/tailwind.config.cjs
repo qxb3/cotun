@@ -5,10 +5,13 @@ module.exports = {
     './src/**/*.{js,ts,svelte}'
   ],
   theme: {
+    container: {
+      center: true
+    },
+    fontFamily: {
+      default: ['Space Mono', 'monospace']
+    },
     extend: {
-      fontFamily: {
-        default: ['Space Mono', 'monospace']
-      }
     },
   },
   plugins: [],
