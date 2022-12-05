@@ -1,4 +1,5 @@
 require('dotenv/config')
+require('module-alias/register')
 
 const { build } = require('./app')
 const { connectToDb } = require('./lib/utils/db')

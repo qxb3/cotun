@@ -15,11 +15,22 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.3.0",
+    "module-alias": "^2.2.2",
     "mongoose": "^6.7.5"
   },
   "devDependencies": {
     "eslint": "^8.28.0",
     "nodemon": "^2.0.20",
     "pino-pretty": "^9.1.1"
+  },
+  "_moduleAliases": {
+    "#root": "./",
+    "#src": "./src",
+    "#routes": "./src/routes",
+    "#lib": "./src/lib",
+    "#utils": "./src/lib/utils",
+    "#models": "./src/lib/models",
+    "#decors": "./src/lib/decors",
+    "#schemas": "./src/lib/schemas"
   }
 }
