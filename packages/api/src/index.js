@@ -1,8 +1,7 @@
 require('dotenv/config')
-require('module-alias/register')
 
-const { build } = require('./app')
-const { connectToDb } = require('./lib/utils/db')
+const { build } = require('#src/app.js')
+const { connectToDb } = require('#utils/db.js')
 
 async function start() {
   const port = process.env.PORT || 5000

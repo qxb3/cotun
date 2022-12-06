@@ -6,9 +6,8 @@ const build = (opts = {}) => {
   app.register(require('@fastify/cors'))
   app.register(require('@fastify/sensible'))
 
-  app.register(require('./lib/decors'))
-
-  app.register(require('./routes'))
+  app.register(require('#decors/index.js'))
+  app.register(require('#routes/index.js'))
 
   return app
 }

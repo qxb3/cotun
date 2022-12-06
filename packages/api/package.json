@@ -3,7 +3,7 @@
   "description": "cotun api powered by fastify",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "src/index.us",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
@@ -15,7 +15,6 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.3.0",
-    "module-alias": "^2.2.2",
     "mongoose": "^6.7.5"
   },
   "devDependencies": {
@@ -23,14 +22,14 @@
     "nodemon": "^2.0.20",
     "pino-pretty": "^9.1.1"
   },
-  "_moduleAliases": {
-    "#root": "./",
-    "#src": "./src",
-    "#routes": "./src/routes",
-    "#lib": "./src/lib",
-    "#utils": "./src/lib/utils",
-    "#models": "./src/lib/models",
-    "#decors": "./src/lib/decors",
-    "#schemas": "./src/lib/schemas"
+  "imports": {
+    "#root/*": "./*",
+    "#src/*": "./src/*",
+    "#routes/*": "./src/routes/*",
+    "#lib/*": "./src/lib/*",
+    "#utils/*": "./src/lib/utils/*",
+    "#models/*": "./src/lib/models/*",
+    "#decors/*": "./src/lib/decors/*",
+    "#schemas/*": "./src/lib/schemas/*"
   }
 }
