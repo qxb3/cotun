@@ -7,6 +7,7 @@ const build = (opts = {}) => {
   app.register(require('@fastify/sensible'))
 
   app.register(require('#decors/index.js'))
+  app.register(require('#schemas/index.js'))
   app.register(require('#routes/index.js'))
 
   return app
