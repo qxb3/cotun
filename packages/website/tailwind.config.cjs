@@ -1,18 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,svelte}'
-  ],
+module.exports =  {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    container: {
-      center: true
-    },
-    fontFamily: {
-      default: ['Space Mono', 'monospace']
-    },
-    extend: {
-    },
+    extend: {},
   },
   plugins: [],
 }
