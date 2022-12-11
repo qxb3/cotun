@@ -16,8 +16,7 @@
       <ul class="flex gap-6">
         {#each [
           ['/login', 'Login'],
-          ['/docs', 'Docs'],
-          ['/pricing', 'Pricing']
+          ['/docs', 'Docs']
         ] as [link, name]}
           <li>
             <a class="underline" href={link}>{name}</a>
