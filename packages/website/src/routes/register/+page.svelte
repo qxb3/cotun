@@ -10,9 +10,9 @@
   <form on:submit|preventDefault={register} class="grid place-items-center w-full">
     <div class="max-w-lg min-w-lg">
       <div class="space-y-3">
-        <input class="w-full" type="text" placeholder="Email">
         <input class="w-full" type="text" placeholder="Username">
         <input class="w-full" type="password" placeholder="Password">
+        <input class="w-full" type="password" placeholder="Confirm Password">
       </div>
 
       <button class="button mt-3 w-full" type="submit">Register</button>
