@@ -10,7 +10,7 @@
     <div class="modal-overlay fixed w-full h-full bg-gray-900 opacity-50"></div>
 
     <div class="bg-white w-full h-max max-w-xl mx-auto rounded-lg shadow-xl z-50 overflow-y-auto">
-      <div class="flex justify-center items-center bg-gray-100 p-5 border-b text-2xl font-extrabold">
+      <div class="flex justify-center items-center bg-gray-100 p-5 border-b">
         <slot name="header" />
 
         <button on:click={() => dispatch('close')} class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
