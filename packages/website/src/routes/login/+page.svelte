@@ -17,4 +17,11 @@
       <button class="button mt-3 w-full" type="submit">Login</button>
     </div>
   </form>
+
+  <div class="text-center mt-12">
+    <p>
+      Don't have an account?
+      <a class="underline" href="/register">Sign Up!</a>
+    </p>
+  </div>
 </div>
