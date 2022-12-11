@@ -15,9 +15,9 @@
   <h1 class="text-3xl mt-3">Dashboard</h1>
 
   <div class="mt-12">
-    <div class="flex justify-between place-items-center">
+    <div class="flex justify-between items-center">
       <h1 class="text-2xl">Namespaces:</h1>
-      <button class="button bg-blue-400 text-white border-blue-300">New +</button>
+      <button class="button bg-green-500 hover:bg-green-600 text-white border-none rounded-md">New +</button>
     </div>
 
     <div class="mt-6">
