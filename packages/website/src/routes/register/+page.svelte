@@ -4,6 +4,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Register</title>
+</svelte:head>
+
 <div class="container p-3">
   <h1 class="text-3xl text-center my-12">Register</h1>
 
