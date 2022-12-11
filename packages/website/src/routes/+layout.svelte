@@ -3,8 +3,15 @@
 
   import Navbar from '$lib/components/Navbar.svelte'
   import Footer from '$lib/components/Footer.svelte'
+  import PageTransition from '$lib/components/PageTransition.svelte'
+
+  export let data
 </script>
 
 <Navbar />
-<slot />
-<Footer />
+
+<PageTransition pathname={data.pathname}>
+  <slot />
+  <Footer />
+</PageTransition>
+
