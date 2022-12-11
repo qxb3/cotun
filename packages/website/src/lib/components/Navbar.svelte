@@ -7,7 +7,7 @@
 </script>
 
 <nav class="shadow">
-  <div class="container flex align-center justify-between">
+  <div class="container flex justify-between">
     <div class="p-2">
       <img class="w-11 h-11" src="/cotun.png" alt="Brand Logo">
     </div>
