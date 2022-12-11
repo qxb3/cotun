@@ -10,6 +10,10 @@
   }
 
   .button {
-    @apply text-lg uppercase py-2 px-3 rounded-sm border-2;
+    @apply uppercase py-2 px-4 rounded-sm border-2;
+  }
+
+  input {
+    @apply rounded-sm p-2 border;
   }
 }
