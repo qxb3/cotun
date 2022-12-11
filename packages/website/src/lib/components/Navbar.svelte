@@ -15,8 +15,8 @@
     <div class="grid place-items-center p-3">
       <ul class="flex gap-6">
         {#each [
-          ['/docs', 'Docs'],
           ['/login', 'Login'],
+          ['/docs', 'Docs'],
           ['/pricing', 'Pricing']
         ] as [link, name]}
           <li>
