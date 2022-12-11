@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  body {
+    font-family: 'Space Mono', monospace;
+  }
+
+  .button {
+    @apply text-lg uppercase py-2 px-3 rounded-sm border-2;
+  }
+}
