@@ -13,14 +13,16 @@
     </div>
 
     <div class="grid place-items-center p-3">
-      <ul class="flex gap-8">
-        <li>
-          <a href="/docs">Docs</a>
-        </li>
-
-        <li>
-          <a href="/login">Login</a>
-        </li>
+      <ul class="flex gap-6">
+        {#each [
+          ['/docs', 'Docs'],
+          ['/login', 'Login'],
+          ['/pricing', 'Pricing']
+        ] as [link, name]}
+          <li>
+            <a class="underline" href={link}>{name}</a>
+          </li>
+        {/each}
       </ul>
     </div>
   </div>
