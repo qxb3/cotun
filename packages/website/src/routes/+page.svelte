@@ -1,8 +1,5 @@
 <script>
-  import Navbar from '$lib/components/Navbar.svelte'
 </script>
-
-<Navbar />
 
 <div class="container">
   <header class="mt-16 text-center">
