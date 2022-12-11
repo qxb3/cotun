@@ -7,7 +7,7 @@
       <img class="w-11 h-11" src="/cotun.png" alt="Brand Logo">
     </a>
 
-    <div class="grid place-items-center p-3">
+    <div class="grid items-center p-3">
       <ul class="flex gap-6">
         {#each [
           ['/login', 'Login'],
