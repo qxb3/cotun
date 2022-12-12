@@ -8,7 +8,7 @@ const validatedApiKey = async (req, reply, done) => {
     return reply.unauthorized('Invalid api key')
   }
 
-  req.user
+  req.user = user
   done()
 }
 
