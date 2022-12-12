@@ -3,7 +3,8 @@ const { createSchema } = require('#utils/db.js')
 module.exports = createSchema('users', {
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
