@@ -1,4 +1,5 @@
 const { createSchema } = require('#utils/db.js')
+const { randomBytes } = require('crypto')
 
 module.exports = createSchema('users', {
   username: {
@@ -9,6 +10,11 @@ module.exports = createSchema('users', {
   password: {
     type: String,
     required: true
+  },
+  apiKey: {
+    type: String,
+    default: randomBytes(42).toString('base64url'),
+    unique: true
   },
   counters: [
     {
