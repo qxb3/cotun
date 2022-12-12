@@ -1,5 +1,5 @@
 <a align="center">
-  <img src="https://github.com/qxb3/cotun/blob/main/logo.png?raw=true">
+  <img src="https://github.com/qxb3/cotun/blob/main/cotun.png?raw=true">
 </a>
 
 <h1 align="center">cotun</h1>
