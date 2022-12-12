@@ -36,6 +36,10 @@ module.exports = (app, _options, done) => {
 
         reply.send(user)
       } catch(err) {
+        if (/duplicate key error collection/.test(err.message)) {
+          reply.badRequest('Username already exist')
+        }
+
         app.errors.response(app, reply, err)
       }
     }
