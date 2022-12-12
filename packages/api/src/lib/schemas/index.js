@@ -1,11 +1,9 @@
 const plugin = require('fastify-plugin')
 
-const account = require('#schemas/account.js')
-const counter = require('#schemas/counter.js')
+const user = require('#schemas/user.js')
 
 module.exports = plugin((app, _options, done) => {
-  app.addSchema(account)
-  app.addSchema(counter)
+  app.addSchema(user)
 
   done()
 })
