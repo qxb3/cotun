@@ -12,6 +12,9 @@ module.exports = (app, _options, done) => {
           username: { type: 'string' },
           password: { type: 'string' }
         }
+      },
+      response: {
+        200: { $ref: 'user' }
       }
     },
     handler: async (req, reply) => {

@@ -20,6 +20,9 @@ module.exports = (app, _options, done) => {
             maxLength: 32
           }
         }
+      },
+      response: {
+        200: { $ref: 'user' }
       }
     },
     handler: async (req, reply) => {
