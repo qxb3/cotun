@@ -1,6 +1,21 @@
 <script>
+  let username = ''
+  let password = ''
+  let confirmPassword = ''
+
+  let usernameErr = ''
+  let passwordErr = ''
+  let confirmPasswordErr = ''
+
   function register() {
-    console.log('Register')
+    if (!username) return usernameErr = 'Username cannot be empty'
+    if (!password) return passwordErr = 'Password cannot be empty'
+    if (!confirmPassword) return confirmPasswordErr = 'You need to confirm your password'
+    if (password !== confirmPassword) return confirmPasswordErr = 'Confirm password doesn\'t match'
+
+    usernameErr = ''
+    passwordErr = ''
+    confirmPasswordErr = ''
   }
 </script>
 
@@ -12,14 +27,31 @@
   <h1 class="text-3xl text-center my-12">Register</h1>
 
   <form on:submit|preventDefault={register} class="grid place-items-center w-full">
-    <div class="max-w-lg min-w-lg">
+    <div class="w-full max-w-lg">
       <div class="space-y-3">
-        <input class="w-full" type="text" placeholder="Username">
-        <input class="w-full" type="password" placeholder="Password">
-        <input class="w-full" type="password" placeholder="Confirm Password">
+        <div>
+          <input bind:value={username} class="w-full input" class:danger={usernameErr} type="text" placeholder="Username">
+          {#if usernameErr}
+            <p class="danger">{usernameErr}</p>
+          {/if}
+        </div>
+
+        <div>
+          <input bind:value={password} class="w-full input" class:danger={passwordErr} type="password" placeholder="Password">
+          {#if passwordErr}
+            <p class="danger">{passwordErr}</p>
+          {/if}
+        </div>
+
+        <div>
+          <input bind:value={confirmPassword} class="w-full input" class:danger={confirmPasswordErr} type="password" placeholder="Confirm Password">
+          {#if confirmPasswordErr}
+            <p class="danger">{confirmPasswordErr}</p>
+          {/if}
+        </div>
       </div>
 
-      <button class="button mt-3 w-full" type="submit">Register</button>
+      <button class="button mt-3 w-full" class:danger={usernameErr || passwordErr || confirmPasswordErr} type="submit">Register</button>
     </div>
   </form>
 
