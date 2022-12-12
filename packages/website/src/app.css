@@ -33,6 +33,14 @@
     @apply text-red-500 border-red-500;
   }
 
+  p.success {
+    @apply text-green-500;
+  }
+
+  p.danger {
+    @apply text-red-500;
+  }
+
   a {
     @apply underline-offset-2;
   }
