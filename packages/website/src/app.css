@@ -14,11 +14,11 @@
   }
 
   .button.success {
-    @apply bg-green-500 hover:bg-green-600 text-white rounded-md border-none;
+    @apply bg-green-500 hover:bg-green-600 text-white border-green-700;
   }
 
   .button.danger {
-    @apply bg-red-500 hover:bg-red-600 text-white rounded-md border-none;
+    @apply bg-red-500 hover:bg-red-600 text-white border-red-700;
   }
 
   .input {
