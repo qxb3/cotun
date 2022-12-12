@@ -1,6 +1,16 @@
 <script>
+  let username = ''
+  let password = ''
+
+  let usernameErr = ''
+  let passwordErr = ''
+
   function login() {
-    console.log('Login')
+    if (!username) return usernameErr = 'Username cannot be empty'
+    if (!password) return passwordErr = 'Password cannot be empty'
+
+    usernameErr = ''
+    passwordErr = ''
   }
 </script>
 
@@ -12,10 +22,21 @@
   <h1 class="text-3xl text-center my-12">Login</h1>
 
   <form on:submit|preventDefault={login} class="grid place-items-center w-full">
-    <div class="max-w-lg min-w-lg">
+    <div class="w-full max-w-lg">
       <div class="space-y-3">
-        <input class="w-full" type="text" placeholder="Username">
-        <input class="w-full" type="password" placeholder="Password">
+        <div>
+          <input bind:value={username} class="input w-full" class:danger={usernameErr} type="text" placeholder="Username">
+          {#if usernameErr}
+            <p class="danger">{usernameErr}</p>
+          {/if}
+        </div>
+
+        <div>
+          <input bind:value={password} class="input w-full" class:danger={passwordErr} type="password" placeholder="Password">
+          {#if passwordErr}
+            <p class="danger">{passwordErr}</p>
+          {/if}
+        </div>
       </div>
 
       <button class="button mt-3 w-full" type="submit">Login</button>
