@@ -21,8 +21,16 @@
     @apply bg-red-500 hover:bg-red-600 text-white rounded-md border-none;
   }
 
-  input {
-    @apply rounded-sm p-2 border;
+  .input {
+    @apply rounded-sm p-2 border focus:outline-none;
+  }
+
+  .input.success {
+    @apply text-green-500 border-green-500;
+  }
+
+  .input.danger {
+    @apply text-red-500 border-red-500;
   }
 
   a {
