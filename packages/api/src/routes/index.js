@@ -1,9 +1,7 @@
-const create = require('./create')
-const counter = require('./counter')
+const count = require('#routes/count.js')
 
 module.exports = (app, _options, done) => {
-  app.register(create)
-  app.register(counter)
+  app.register(count)
 
   done()
 }
