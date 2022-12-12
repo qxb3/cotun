@@ -1,6 +1,6 @@
-<a align="center">
-  <img src="https://github.com/qxb3/cotun/blob/main/cotun.png?raw=true">
-</a>
+<p align="center">
+  <img width="45%" height="200" src="https://github.com/qxb3/cotun/blob/main/cotun.png?raw=true">
+</p>
 
 <h1 align="center">cotun</h1>
 <p align="center">A counter as a service</p>
