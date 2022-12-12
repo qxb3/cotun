@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <button class="button mt-3 w-full" type="submit">Login</button>
+      <button class="button mt-3 w-full" class:danger={usernameErr || passwordErr} type="submit">Login</button>
     </div>
   </form>
 
