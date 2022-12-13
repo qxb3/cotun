@@ -2,44 +2,44 @@
   import Modal from '$lib/components/Modal.svelte'
   import Alert from '$lib/components/Alert.svelte'
 
-  let namespaces = [
+  let counters = [
     {
       name: 'views',
       count: 16
     }
   ]
 
-  let newNamespace = false
-  let newNamespaceName = ''
-  let newNamespaceDefaultCount = 0
-  let newNamespaceError = ''
+  let newCounter = false
+  let newCounterName = ''
+  let newCounterDefaultCount = 0
+  let newCounterError = ''
 
-  function saveNewNamespace() {
-    if (!newNamespaceName) return newNamespaceError = 'Name cannot be empty'
-    if (namespaces.some(v => v.name === newNamespaceName)) return newNamespaceError = `There is already a namespace called ${newNamespaceName}`
+  function saveNewCounter() {
+    if (!newCounterName) return newCounterError = 'Name cannot be empty'
+    if (counters.some(v => v.name === newCounterName)) return newCounterError = `There is already a counter called ${newCounterName}`
 
-    namespaces = [{ name: newNamespaceName, count: newNamespaceDefaultCount }, ...namespaces]
+    counters = [{ name: newCounterName, count: newCounterDefaultCount }, ...counters]
 
-    newNamespace = false
-    newNamespaceError = ''
+    newCounter = false
+    newCounterError = ''
   }
 
-  let editNamespace = false
-  let editNamespaceName = ''
-  let editNamespaceCount = 0
-  let editNamespaceError = ''
+  let editCounter = false
+  let editCounterName = ''
+  let editCounterCount = 0
+  let editCounterError = ''
 
-  function openEditNamespace(name, count) {
-    editNamespaceName = name
-    editNamespaceCount = count
-    editNamespace = true
+  function openEditCounter(name, count) {
+    editCounterName = name
+    editCounterCount = count
+    editCounter = true
   }
 
-  function saveEditNamespace() {
-    if (!editNamespaceName) return editNamespaceError = 'Name cannot be empty'
+  function saveEditCounter() {
+    if (!editCounterName) return editCounterError = 'Name cannot be empty'
 
-    editNamespaceError = ''
-    editNamespace = false
+    editCounterError = ''
+    editCounter = false
   }
 </script>
 
@@ -52,12 +52,12 @@
 
   <div class="mt-12">
     <div class="flex justify-between items-center">
-      <h1 class="text-2xl">Namespaces:</h1>
-      <button on:click={() => newNamespace = true} class="button success">New +</button>
+      <h1 class="text-2xl">Counters:</h1>
+      <button on:click={() => newCounter = true} class="button success">New +</button>
     </div>
 
     <div class="mt-6">
-      {#each namespaces as { name, count }}
+      {#each counters as { name, count }}
         <div class="flex justify-between border rounded-md my-2 p-2">
           <div>
             <h1>Name: {name}</h1>
@@ -65,7 +65,7 @@
           </div>
 
           <div>
-            <button on:click={() => openEditNamespace(name, count)} class="button">Edit</button>
+            <button on:click={() => openEditCounter(name, count)} class="button">Edit</button>
           </div>
         </div>
       {/each}
@@ -73,76 +73,76 @@
   </div>
 </div>
 
-<!-- New Namespace Modal -->
+<!-- New Counter Modal -->
 <Modal
-  open={newNamespace}
-  on:close={() => newNamespace = false}
+  open={newCounter}
+  on:close={() => newCounter = false}
 >
   <svelte:fragment slot="header">
-    <h3 class="text-xl font-semibold">New Namespace</h3>
+    <h3 class="text-xl font-semibold">New Counter</h3>
   </svelte:fragment>
 
   <svelte:fragment slot="body">
-    {#if newNamespaceError}
+    {#if newCounterError}
       <Alert
-        message={newNamespaceError}
+        message={newCounterError}
         type="danger"
-        on:close={() => newNamespaceError = ''}
+        on:close={() => newCounterError = ''}
       />
     {/if}
 
     <div class="space-y-3">
       <div>
         <p class="font-semibold">Name:</p>
-        <input bind:value={newNamespaceName} class="w-full" type="text" placeholder="views">
+        <input bind:value={newCounterName} class="input w-full" type="text" placeholder="views">
       </div>
 
       <div>
         <p class="font-semibold">Default Count:</p>
-        <input bind:value={newNamespaceDefaultCount} class="w-full" type="number" placeholder="0">
+        <input bind:value={newCounterDefaultCount} class="input w-full" type="number" placeholder="0">
       </div>
     </div>
   </svelte:fragment>
 
   <svelte:fragment slot="footer">
-    <button on:click={() => newNamespace = false} class="button danger">Cancel</button>
-    <button on:click={saveNewNamespace} class="button success">Save</button>
+    <button on:click={() => newCounter = false} class="button danger">Cancel</button>
+    <button on:click={saveNewCounter} class="button success">Save</button>
   </svelte:fragment>
 </Modal>
 
-<!-- Edit Namespace Modal -->
+<!-- Edit Counter Modal -->
 <Modal
-  open={editNamespace}
-  on:close={() => editNamespace = false}
+  open={editCounter}
+  on:close={() => editCounter = false}
 >
   <svelte:fragment slot="header">
-    <h3 class="text-xl font-semibold">Edit Namespace</h3>
+    <h3 class="text-xl font-semibold">Edit Counter</h3>
   </svelte:fragment>
 
   <svelte:fragment slot="body">
-    {#if editNamespaceError}
+    {#if editCounterError}
       <Alert
-        message={editNamespaceError}
+        message={editCounterError}
         type="danger"
-        on:close={() => editNamespaceError = ''}
+        on:close={() => editCounterError = ''}
       />
     {/if}
 
     <div class="space-y-3">
       <div>
         <p class="font-semibold">Name:</p>
-        <input bind:value={editNamespaceName} class="w-full" type="text" placeholder="Name">
+        <input bind:value={editCounterName} class="input w-full" type="text" placeholder="Name">
       </div>
 
       <div>
         <p class="font-semibold">Count:</p>
-        <input bind:value={editNamespaceCount} class="w-full" type="number" placeholder="Count">
+        <input bind:value={editCounterCount} class="input w-full" type="number" placeholder="Count">
       </div>
     </div>
   </svelte:fragment>
 
   <svelte:fragment slot="footer">
-    <button on:click={() => editNamespace = false} class="button danger">Cancel</button>
-    <button on:click={saveEditNamespace} class="button success">Save</button>
+    <button on:click={() => editCounter = false} class="button danger">Cancel</button>
+    <button on:click={saveEditCounter} class="button success">Save</button>
   </svelte:fragment>
 </Modal>
