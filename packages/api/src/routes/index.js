@@ -7,8 +7,8 @@ const get = require('#routes/get.js')
 const count = require('#routes/count.js')
 
 module.exports = (app, _options, done) => {
-  app.register(register, { prefix: '/user' })
-  app.register(login, { prefix: '/user' })
+  app.register(register, { prefix: '/_user' })
+  app.register(login, { prefix: '/_user' })
 
   app.register(create)
   app.register(remove)
