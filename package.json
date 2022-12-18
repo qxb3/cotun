@@ -4,6 +4,20 @@
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "./scripts/runner start",
+    "dev": "./scripts/runner dev",
+    "lint": "./scripts/runner lint",
+
+    "api:start": "yarn workspace api start",
+    "api:dev": "yarn workspace api dev",
+    "api:lint": "yarn workspace api lint",
+
+    "website:start": "yarn website:build && yarn workspace website start",
+    "website:dev": "yarn workspace website dev",
+    "website:build": "yarn workspace website build",
+    "website:lint": "yarn workspace website lint"
+  },
   "workspaces": [
     "packages/**"
   ],
