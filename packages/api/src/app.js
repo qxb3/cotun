@@ -3,7 +3,11 @@ const fastify = require('fastify')
 const build = (opts = {}) => {
   const app = fastify(opts)
 
-  app.register(require('@fastify/cors'), { credentials: true })
+  app.register(require('@fastify/cors'), {
+    origin: process.env.CLIENT_URL,
+    credentials: true
+  })
+  app.register(require('@fastify/cookie'))
   app.register(require('@fastify/sensible'))
 
   app.register(require('#decors/index.js'))
