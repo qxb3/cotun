@@ -26,6 +26,16 @@ module.exports = (app, _options, done) => {
           return reply.unauthorized('Invalid username or password')
         }
 
+        reply.setCookie('token', user.apiKey, {
+          domain: process.env.CLIENT_URL,
+          path: '/',
+          secure: true,
+          httpOnly: true,
+          sameSite: true
+        })
+
+        reply.setCookie('username', user.username)
+
         reply.send(user)
       } catch(err) {
         app.errors.response(app, reply, err)

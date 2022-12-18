@@ -34,6 +34,16 @@ module.exports = (app, _options, done) => {
           password
         })
 
+        reply.setCookie('token', user.apiKey, {
+          domain: process.env.CLIENT_URL,
+          path: '/',
+          secure: true,
+          httpOnly: true,
+          sameSite: true
+        })
+
+        reply.setCookie('username', user.username)
+
         reply.send(user)
       } catch(err) {
         if (/duplicate key error collection/.test(err.message)) {
