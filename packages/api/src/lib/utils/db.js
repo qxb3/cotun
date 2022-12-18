@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const ObjectId = mongoose.Types.ObjectId
+const Types = mongoose.Types
 
 const connectToDb = async (app) => {
   const db = await mongoose.connect(process.env.MONGO_URI, {
@@ -25,7 +25,7 @@ const createSchema = (name, schema) => {
 }
 
 module.exports = {
-  ObjectId,
+  Types,
   connectToDb,
   createSchema
 }
