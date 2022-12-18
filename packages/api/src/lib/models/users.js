@@ -15,17 +15,5 @@ module.exports = createSchema('users', {
     type: String,
     default: randomBytes(42).toString('base64url'),
     unique: true
-  },
-  counters: [
-    {
-      name: {
-        type: String,
-        required: true
-      },
-      count: {
-        type: Number,
-        required: true
-      }
-    }
-  ]
+  }
 })
