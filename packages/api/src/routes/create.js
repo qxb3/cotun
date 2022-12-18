@@ -40,7 +40,7 @@ module.exports = (app, _options, done) => {
 
         reply.send(counter)
       } catch(err) {
-        app.errors.response(req, reply, err)
+        app.errors.response(app, reply, err)
       }
     }
   })
