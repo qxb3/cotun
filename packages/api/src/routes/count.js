@@ -1,3 +1,5 @@
+const Counters = require('#models/counters.js')
+
 module.exports = (app, _options, done) => {
   app.route({
     method: 'POST',
@@ -14,10 +16,10 @@ module.exports = (app, _options, done) => {
         type: 'object',
         required: ['name', 'type'],
         properties: {
-          name: { type: 'string', minLength: 3 },
+          name: { type: 'string' },
           type: {
             type: 'string',
-            enum: ['inc', 'dec']
+            enum: ['increment', 'decrement']
           }
         }
       },
@@ -25,12 +27,35 @@ module.exports = (app, _options, done) => {
         200: { $ref: 'counter' }
       }
     },
-    preHandler: (req, reply, done) => app.validatedApiKey(req, reply, done),
+    preHandler: (req, reply, done) => app.auth.validatedApiKey(req, reply, done),
     handler: async (req, reply) => {
+      const { name, type } = req.query
       const { user } = req
-      // const { name, type } = req.query
-      console.log(user)
 
+      try {
+        const counter = await Counters.findOneAndUpdate(
+          {
+            userId: user._id,
+            name
+          },
+          {
+            $inc: {
+              count: type === 'increment' ? 1 : -1
+            }
+          },
+          {
+            new: true
+          }
+        )
+
+        if (!counter) {
+          reply.badRequest(`There is no counter called ${name}`)
+        }
+
+        reply.send(counter)
+      } catch(err) {
+        app.errors.response(app, reply, err)
+      }
     }
   })
 
