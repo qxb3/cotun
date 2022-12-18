@@ -1,0 +1,37 @@
+#!/bin/bash
+
+command=$1
+
+if [ -z $1 ]; then
+  echo "
+  Choose one of the commands:
+  start, dev, lint
+
+  Example: ./scripts/runner start
+  "
+fi
+
+case $command in
+  start)
+    concurrently "yarn api:start" "yarn website:start" \
+      --names "SERVER,CLIENT" \
+      --prefix "[{name}]" \
+      --prefix-colors "bgBlue.bold,bgMagenta.bold" \
+      --kill-others-on-fail
+  ;;
+
+  dev)
+    concurrently "yarn api:dev" "yarn website:dev" \
+      --names "SERVER,CLIENT" \
+      --prefix "[{name}]" \
+      --prefix-colors "bgBlue.bold,bgMagenta.bold" \
+      --kill-others-on-fail
+  ;;
+
+  lint)
+    concurrently "yarn api:lint" \
+      --names "SERVER,CLIENT" \
+      --prefix "[{name}]" \
+      --prefix-colors "bgBlue.bold,bgMagenta.bold"
+  ;;
+esac
