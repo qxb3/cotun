@@ -9,7 +9,7 @@ module.exports = (app, _options, done) => {
         type: 'object',
         required: ['name'],
         properties: {
-          name: { type: 'string' },
+          name: { type: 'string', minLength: 3 },
           count: { type: 'integer' }
         }
       },
