@@ -5,6 +5,13 @@ module.exports = (app, _options, done) => {
     method: 'POST',
     path: '/remove',
     schema: {
+      headers: {
+        type: 'object',
+        required: ['Authorization'],
+        properties: {
+          Authorization: { type: 'string' }
+        }
+      },
       query: {
         type: 'object',
         required: ['name'],
