@@ -1,4 +1,8 @@
 <script>
+  import { PUBLIC_API_URL } from '$env/static/public'
+  import { goto } from '$app/navigation';
+  import userStore from '$lib/stores/user.js'
+
   let username = ''
   let password = ''
   let confirmPassword = ''
@@ -7,11 +11,30 @@
   let passwordErr = ''
   let confirmPasswordErr = ''
 
-  function register() {
+  async function register() {
     if (!username) return usernameErr = 'Username cannot be empty'
     if (!password) return passwordErr = 'Password cannot be empty'
     if (!confirmPassword) return confirmPasswordErr = 'You need to confirm your password'
     if (password !== confirmPassword) return confirmPasswordErr = 'Confirm password doesn\'t match'
+
+    const res = await fetch(`${PUBLIC_API_URL}/_user/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
+
+    const data = await res.json()
+
+    if (res.status !== 200) {
+      return usernameErr = data.message
+    }
+
+    goto('/dashboard')
 
     usernameErr = ''
     passwordErr = ''
