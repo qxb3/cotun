@@ -2,7 +2,7 @@ import { PUBLIC_API_URL } from '$env/static/public'
 import { goto } from '$app/navigation'
 import userStore from '$lib/stores/user.js'
 
-export const load = async ({ url }) => {
+export const load = async ({ url, fetch }) => {
 	if (url.pathname === '/dashboard') {
 		const res = await fetch(`${PUBLIC_API_URL}/_user/get`, {
 			headers: {
