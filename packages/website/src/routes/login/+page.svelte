@@ -1,13 +1,35 @@
 <script>
+  import { PUBLIC_API_URL } from '$env/static/public'
+  import { goto } from '$app/navigation';
+
   let username = ''
   let password = ''
 
   let usernameErr = ''
   let passwordErr = ''
 
-  function login() {
+  async function login() {
     if (!username) return usernameErr = 'Username cannot be empty'
     if (!password) return passwordErr = 'Password cannot be empty'
+
+    const res = await fetch(`${PUBLIC_API_URL}/_user/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
+
+    const data = await res.json()
+
+    if (res.status !== 200) {
+      return usernameErr = data.message
+    }
+
+    goto('/dashboard')
 
     usernameErr = ''
     passwordErr = ''
