@@ -3,13 +3,6 @@ module.exports = (app, _options, done) => {
     method: 'GET',
     path: '/get',
     schema: {
-      headers: {
-        type: 'object',
-        required: ['Authorization'],
-        properties: {
-          Authorization: { type: 'string' }
-        }
-      },
       response: {
         200: { $ref: 'user' }
       }
