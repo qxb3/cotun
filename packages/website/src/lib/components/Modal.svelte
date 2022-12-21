@@ -22,7 +22,7 @@
         <slot name="body" />
       </div>
 
-      <div class="flex justify-start items-center gap-5 bg-gray-100 p-5 border-t">
+      <div class="flex flex-wrap justify-start items-center gap-5 bg-gray-100 p-5 border-t">
         <slot name="footer" />
       </div>
     </div>
