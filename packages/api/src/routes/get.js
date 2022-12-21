@@ -7,7 +7,6 @@ module.exports = (app, _options, done) => {
     schema: {
       headers: {
         type: 'object',
-        required: ['Authorization'],
         properties: {
           Authorization: { type: 'string' }
         }
