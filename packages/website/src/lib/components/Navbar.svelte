@@ -1,4 +1,15 @@
 <script>
+  import userStore from '$lib/stores/user.js'
+
+  const links = [
+    $userStore.username
+      ? { name: 'Dashboard', path: '/dashboard' }
+      : null,
+    $userStore.username
+      ? { name: 'Logout', path: '/logout' }
+      : { name: 'Login', path: '/login' },
+    { name: 'Docs', path: '/docs' }
+  ].filter(v => v !== null)
 </script>
 
 <nav class="shadow">
@@ -9,12 +20,9 @@
 
     <div class="grid items-center p-3">
       <ul class="flex gap-6">
-        {#each [
-          ['/login', 'Login'],
-          ['/docs', 'Docs']
-        ] as [link, name]}
+        {#each links as { name, path }}
           <li>
-            <a class="underline" href={link}>{name}</a>
+            <a class="underline" href={path}>{name}</a>
           </li>
         {/each}
       </ul>
