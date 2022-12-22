@@ -35,7 +35,7 @@ module.exports = (app, _options, done) => {
         })
 
         if (existingCounter) {
-          reply.badRequest(`There is already a counter called ${name}`)
+          return reply.badRequest(`There is already a counter called ${name}`)
         }
 
         const counter = await Counters.create({
