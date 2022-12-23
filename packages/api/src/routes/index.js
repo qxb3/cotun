@@ -4,6 +4,7 @@ const userGet = require('#routes/user/get.js')
 
 const create = require('#routes/create.js')
 const remove = require('#routes/remove.js')
+const edit = require('#routes/edit.js')
 const get = require('#routes/get.js')
 const count = require('#routes/count.js')
 
@@ -14,6 +15,7 @@ module.exports = (app, _options, done) => {
 
   app.register(create)
   app.register(remove)
+  app.register(edit)
   app.register(get)
   app.register(count)
 
