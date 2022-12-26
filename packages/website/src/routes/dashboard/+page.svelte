@@ -1,27 +1,39 @@
 <script>
   import Modal from '$lib/components/Modal.svelte'
   import Alert from '$lib/components/Alert.svelte'
+  import { PUBLIC_API_URL } from '$env/static/public'
 
-  let counters = [
-    {
-      name: 'views',
-      count: 16
-    }
-  ]
+  export let data
+  let counters = [...data.counters]
 
   let newCounter = false
   let newCounterName = ''
-  let newCounterDefaultCount = 0
+  let newCounterStartingCount = 0
   let newCounterError = ''
 
-  function saveNewCounter() {
+  async function saveNewCounter() {
     if (!newCounterName) return newCounterError = 'Name cannot be empty'
-    if (counters.some(v => v.name === newCounterName)) return newCounterError = `There is already a counter called ${newCounterName}`
+    if (newCounterName.length < 3) return newCounterError = 'Name must have atleast 3 characters'
 
-    counters = [{ name: newCounterName, count: newCounterDefaultCount }, ...counters]
+    const res = await fetch(`${PUBLIC_API_URL}/create?name=${newCounterName}&count=${newCounterStartingCount}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+    const data = await res.json()
 
-    newCounter = false
+    if (res.status !== 200) {
+      return newCounterError = data.message
+    }
+
+    counters = [...counters, data]
+
+    newCounterName = ''
+    newCounterStartingCount = 0
     newCounterError = ''
+    newCounter = false
   }
 
   let editCounter = false
@@ -29,17 +41,66 @@
   let editCounterCount = 0
   let editCounterError = ''
 
-  function openEditCounter(name, count) {
+  async function openEditCounter(name, count) {
     editCounterName = name
     editCounterCount = count
     editCounter = true
   }
 
-  function saveEditCounter() {
+  async function saveEditCounter() {
     if (!editCounterName) return editCounterError = 'Name cannot be empty'
+    if (editCounterName.length < 3) return editCounterName = 'New name must have atleast 3 characters'
 
+    const res = await fetch(`${PUBLIC_API_URL}/edit?name=${editCounterName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        newName: editCounterName,
+        newCount: editCounterError
+      })
+    })
+    const data = await res.json()
+
+    if (res.status !== 200) {
+      return newCounterError = data.message
+    }
+
+    editCounterName = ''
+    editCounterCount = 0
     editCounterError = ''
     editCounter = false
+  }
+
+  let deleteCounter = false
+  let deleteCounterName = ''
+  let deleteCounterError = ''
+
+  function openDeleteConfirmation(name) {
+    deleteCounterName = name
+    deleteCounter = true
+  }
+
+  async function saveDeleteCounter() {
+    const res = await fetch(`${PUBLIC_API_URL}/remove?name=${deleteCounterName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+    const data = await res.json()
+
+    if (res.status !== 200) {
+      return deleteCounterError = data.message
+    }
+
+    counters = counters.filter(v => v.name !== data.name)
+
+    deleteCounterName = ''
+    deleteCounterError = ''
+    deleteCounter = false
   }
 </script>
 
@@ -57,6 +118,12 @@
     </div>
 
     <div class="mt-6">
+      {#if counters.length <= 0}
+        <div class="max-w-sm mx-auto">
+          <p class="text-center">You currently dont have any counter. Press the <span class="font-bold">NEW +</span> button to create one :)</p>
+        </div>
+      {/if}
+
       {#each counters as { name, count }}
         <div class="flex justify-between border rounded-md my-2 p-2">
           <div>
@@ -66,6 +133,7 @@
 
           <div>
             <button on:click={() => openEditCounter(name, count)} class="button">Edit</button>
+            <button on:click={() => openDeleteConfirmation(name)} class="button danger">Delete</button>
           </div>
         </div>
       {/each}
@@ -98,8 +166,8 @@
       </div>
 
       <div>
-        <p class="font-semibold">Default Count:</p>
-        <input bind:value={newCounterDefaultCount} class="input w-full" type="number" placeholder="0">
+        <p class="font-semibold">Starting Count:</p>
+        <input bind:value={newCounterStartingCount} class="input w-full" type="number" placeholder="0">
       </div>
     </div>
   </svelte:fragment>
@@ -130,12 +198,12 @@
 
     <div class="space-y-3">
       <div>
-        <p class="font-semibold">Name:</p>
+        <p class="font-semibold">New Name:</p>
         <input bind:value={editCounterName} class="input w-full" type="text" placeholder="Name">
       </div>
 
       <div>
-        <p class="font-semibold">Count:</p>
+        <p class="font-semibold">New Count:</p>
         <input bind:value={editCounterCount} class="input w-full" type="number" placeholder="Count">
       </div>
     </div>
@@ -144,5 +212,34 @@
   <svelte:fragment slot="footer">
     <button on:click={() => editCounter = false} class="button danger">Cancel</button>
     <button on:click={saveEditCounter} class="button success">Save</button>
+  </svelte:fragment>
+</Modal>
+
+<Modal
+  open={deleteCounter}
+  on:close={() => deleteCounter = false}
+>
+  <svelte:fragment slot="header">
+    <h3 class="text-xl font-semibold">Are you sure?</h3>
+  </svelte:fragment>
+
+  <svelte:fragment slot="body">
+    {#if deleteCounterError}
+      <Alert
+        message={deleteCounterError}
+        type="danger"
+        on:close={() => deleteCounterError = ''}
+      />
+    {/if}
+
+    <p>
+      Are you sure that you want to delete counter: <span class="font-bold">{deleteCounterName}</span>?
+      You cannot bring back the counter once you confirm the deletion.
+    </p>
+  </svelte:fragment>
+
+  <svelte:fragment slot="footer">
+    <button on:click={() => deleteCounter = false} class="button success">Cancel</button>
+    <button on:click={() => saveDeleteCounter()} class="button danger">Confirm</button>
   </svelte:fragment>
 </Modal>

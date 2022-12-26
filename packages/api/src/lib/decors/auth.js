@@ -2,9 +2,11 @@ const Users = require('#models/users.js')
 
 const validatedApiKey = (req, reply, done) => {
   const { authorization } = req.headers
-  const { apiKey } = req.cookies
+  const { token } = req.cookies
 
-  Users.findOne({ apiKey: authorization || apiKey })
+  console.log(req.cookies)
+
+  Users.findOne({ apiKey: authorization || token })
     .then(user => {
       if (!user) {
         return reply.unauthorized('Invalid api key')
